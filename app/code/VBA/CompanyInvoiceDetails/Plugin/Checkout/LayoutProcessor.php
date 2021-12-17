@@ -17,41 +17,87 @@ class LayoutProcessor
      * @param array $jsLayout
      * @return array
      */
-    public function afterProcess(
-        \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
-        array $jsLayout
-    ) {
-        $this->jsLayout = $jsLayout;
 
+//    public function afterProcess(
+//        \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
+//        array $jsLayout
+//    ) {
+//        $this->jsLayout = $jsLayout;
+//
+//        if (isset($jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
+//            ['payment']['children']['payments-list']['children']))
+//        {
+//            $configuration = $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['payments-list']['children'];
+//            foreach ($configuration as $paymentGroup => $groupConfig) {
+//                if (isset($groupConfig['component']) AND $groupConfig['component'] === 'Magento_Checkout/js/view/billing-address') {
+//                    $this->generateFieldPayment('company_invoice_details', 'Company invoice details', $paymentGroup, $groupConfig, 280);
+//                    $this->generateFieldPayment('company', 'Company', $paymentGroup, $groupConfig, 290);
+//                    $this->generateFieldPayment('company_legal_name', 'Company Legal Name', $paymentGroup, $groupConfig, 300);
+//                    $this->generateFieldPayment('company_address', 'Company Address', $paymentGroup, $groupConfig, 310);
+//                    $this->generateFieldPayment('vat_tax', 'VAT/TAX ID', $paymentGroup, $groupConfig, 320);
+//                    $this->generateFieldPayment('company_representative', 'Company Representative', $paymentGroup, $groupConfig, 330);
+//                    $this->generateFieldPayment('company_email', 'Company Email', $paymentGroup, $groupConfig, 340);
+//                }
+//            }
+//        }
+//
+//        if(isset($jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']['shippingAddress']['children']['shipping-address-fieldset'])
+//        ){
+//            $this->generateFieldShipping('company_invoice_details','Company invoice details', 280);
+//            $this->generateFieldShipping('company', 'Company', 290);
+//            $this->generateFieldShipping('company_legal_name', 'Company Legal Name', 300);
+//            $this->generateFieldShipping('company_address', 'Company Address',310);
+//            $this->generateFieldShipping('vat_tax', 'VAT/TAX ID',  320);
+//            $this->generateFieldShipping('company_representative', 'Company Representative',  330);
+//            $this->generateFieldShipping('company_email', 'Company Email', 340);
+//        }
+//
+//        return $this->jsLayout;
+//    }
+
+    public function afterProcess(\Magento\Checkout\Block\Checkout\LayoutProcessor  $subject, $jsLayout)
+    {
         if (isset($jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
             ['payment']['children']['payments-list']['children']))
         {
-            $configuration = $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['payments-list']['children'];
-            foreach ($configuration as $paymentGroup => $groupConfig) {
-                if (isset($groupConfig['component']) AND $groupConfig['component'] === 'Magento_Checkout/js/view/billing-address') {
-                    $this->generateFieldPayment('company_invoice_details', 'Company invoice details', $paymentGroup, $groupConfig, 280);
-                    $this->generateFieldPayment('company', 'Company', $paymentGroup, $groupConfig, 290);
-                    $this->generateFieldPayment('company_legal_name', 'Company Legal Name', $paymentGroup, $groupConfig, 300);
-                    $this->generateFieldPayment('company_address', 'Company Address', $paymentGroup, $groupConfig, 310);
-                    $this->generateFieldPayment('vat_tax', 'VAT/TAX ID', $paymentGroup, $groupConfig, 320);
-                    $this->generateFieldPayment('company_representative', 'Company Representative', $paymentGroup, $groupConfig, 330);
-                    $this->generateFieldPayment('company_email', 'Company Email', $paymentGroup, $groupConfig, 340);
-                }
+            foreach ($jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['payments-list']['children'] as $key => $payment)
+            {
+                $paymentCode = 'billingAddress'.str_replace('-form','',$key);
+                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['payments-list']['children'][$key]['children']['form-fields']['children'][$this->_customAttributeCode] = $this->getUnitNumberAttributeForAddress($paymentCode);
             }
+
         }
 
         if(isset($jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']['shippingAddress']['children']['shipping-address-fieldset'])
         ){
-            $this->generateFieldShipping('company_invoice_details','Company invoice details', 280);
-            $this->generateFieldShipping('company', 'Company', 290);
-            $this->generateFieldShipping('company_legal_name', 'Company Legal Name', 300);
-            $this->generateFieldShipping('company_address', 'Company Address',310);
-            $this->generateFieldShipping('vat_tax', 'VAT/TAX ID',  320);
-            $this->generateFieldShipping('company_representative', 'Company Representative',  330);
-            $this->generateFieldShipping('company_email', 'Company Email', 340);
+            $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']['shippingAddress']['children']['shipping-address-fieldset']['children'][$this->_customAttributeCode] = $this->getUnitNumberAttributeForAddress('shippingAddress');
         }
 
-        return $this->jsLayout;
+        return $jsLayout;
+    }
+
+    public function getUnitNumberAttributeForAddress($addressType)
+    {
+        return $customField = [
+            'component' => 'Magento_Ui/js/form/element/abstract',
+            'config' => [
+                'customScope' => $addressType.'.custom_attributes',
+                'customEntry' => null,
+                'template' => 'ui/form/field',
+                'elementTmpl' => 'ui/form/element/input'
+            ],
+            'dataScope' => $addressType.'.custom_attributes' . '.' . $this->_customAttributeCode,
+            'label' => 'Unit Number',
+            'provider' => 'checkoutProvider',
+            'sortOrder' => 71,
+            'validation' => [
+                'required-entry' => false
+            ],
+            'options' => [],
+            'filterBy' => null,
+            'customEntry' => null,
+            'visible' => true,
+        ];
     }
 
     /** Declare Specific Payment
