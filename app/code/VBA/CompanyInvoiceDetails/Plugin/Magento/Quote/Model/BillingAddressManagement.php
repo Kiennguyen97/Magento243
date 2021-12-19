@@ -24,7 +24,7 @@ class BillingAddressManagement
         if (!empty($extAttributes)) {
             try {
                 $address->setCompanyLegalName($extAttributes->getCompanyLegalName());
-                $address->setCompanyAddress($extAttributes->getCompanyAddressr());
+                $address->setCompanyAddress($extAttributes->getCompanyAddress());
                 $address->setVatTax($extAttributes->getVatTax());
                 $address->setCompanyRepresentative($extAttributes->getCompanyRepresentative());
                 $address->setCompanyEmail($extAttributes->getCompanyEmail());

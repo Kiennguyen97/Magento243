@@ -9,12 +9,8 @@
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
         <plugin name="vba_company_invoice_detail" type="VBA\CompanyInvoiceDetails\Plugin\Checkout\LayoutProcessor" sortOrder="10" />
     </type>
-
     <type name="Magento\Quote\Model\BillingAddressManagement">
         <plugin disabled="false" name="VBA_CompanyInvoiceDetails_Plugin_Magento_Quote_Model_BillingAddressManagement" sortOrder="10" type="VBA\CompanyInvoiceDetails\Plugin\Magento\Quote\Model\BillingAddressManagement"/>
-    </type>
-    <type name="Magento\Quote\Model\Quote\Address\BillingAddressPersister">
-        <plugin disabled="false" name="BillingAddressSave" sortOrder="10" type="VBA\CompanyInvoiceDetails\Plugin\Magento\Quote\Model\Quote\Address\BillingAddressPersister"/>
     </type>
     <type name="Magento\Quote\Model\ShippingAddressManagement">
         <plugin disabled="false" name="VBA_CompanyInvoiceDetails_Plugin_Magento_Quote_Model_ShippingAddressManagement" sortOrder="10" type="VBA\CompanyInvoiceDetails\Plugin\Magento\Quote\Model\ShippingAddressManagement"/>

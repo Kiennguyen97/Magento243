@@ -19,7 +19,9 @@ define([
 
                     if($.isPlainObject(value)){
                         value = value['value'];
+                        key = this.attribute_code;
                     }
+
                     shippingAddress['customAttributes'][key] = value;
                     shippingAddress['extension_attributes'][key] = value;
 

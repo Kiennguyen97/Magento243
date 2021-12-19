@@ -19,6 +19,7 @@ define([
                     $.each(billingAddress.customAttributes, function (key, value) {
                         if($.isPlainObject(value)){
                             value = value['value'];
+                            key = this.attribute_code;
                         }
 
                         billingAddress['extension_attributes'][key] = value;
