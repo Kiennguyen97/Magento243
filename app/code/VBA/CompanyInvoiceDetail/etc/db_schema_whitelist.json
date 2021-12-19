@@ -1,0 +1,20 @@
+{
+    "quote_address": {
+        "column": {
+            "company_legal_name": true,
+            "company_address": true,
+            "vat_tax": true,
+            "company_representative": true,
+            "company_email": true
+        }
+    },
+    "sales_order_address": {
+        "column": {
+            "company_legal_name": true,
+            "company_address": true,
+            "vat_tax": true,
+            "company_representative": true,
+            "company_email": true
+        }
+    }
+}

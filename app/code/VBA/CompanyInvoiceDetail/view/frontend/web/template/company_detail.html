@@ -1,0 +1,16 @@
+<!-- ko if: showForm -->
+<div class="fieldset shipping-handling-fieldset">
+    <div class="_required">
+        <label class="label company_legal_name" for="company_legal_name">
+            <span><span style="color: #e02b27">*</span></span>
+        </label>
+        <input id="company_legal_name"
+               data-bind="event: {change: setCompanyLegalName}, value: companyLegalName}"
+               class="input-text" type="text"  aria-required="true" aria-invalid="false">
+    </div>
+</div>
+<!-- /ko -->
+
+
+
+
