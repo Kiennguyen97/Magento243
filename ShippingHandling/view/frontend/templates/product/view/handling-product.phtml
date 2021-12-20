@@ -1,0 +1,11 @@
+<?php
+/**
+ * @var \Gssi\ShippingHandling\Block\ShippingHandling $block
+ */
+?>
+
+<div class="extra-fees-content">
+    <?php
+    echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('shipping-handling-content-product')->toHtml();
+    ?>
+</div>

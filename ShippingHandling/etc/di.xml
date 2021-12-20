@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Quote\Api\CartRepositoryInterface">
+        <plugin name="gssi_cart_extra_attribute_shipping_handling" type="Gssi\ShippingHandling\Plugin\CartRepositoryPlugin" />
+    </type>
+
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="gssi_save_address_shipping_handling" type="Gssi\ShippingHandling\Plugin\Model\ShippingAddressHandling" />
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Address\ToOrderAddress">
+        <plugin name="gssi_shipping_handling_convert_address" type="Gssi\ShippingHandling\Plugin\Quote\Address\ToOrderAddress"/>
+    </type>
+</config>

@@ -1,0 +1,51 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var $block \Magento\Sales\Block\Adminhtml\Order\View\Tab\Info
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+
+/** @var \Magento\Shipping\Helper\Data $shippingHelper */
+$shippingHelper = $block->getData('shippingHelper');
+/** @var \Magento\Tax\Helper\Data $taxHelper */
+$taxHelper = $block->getData('taxHelper');
+$helperHandling = $this->helper('Gssi\ShippingHandling\Helper\Data');
+?>
+<?php $order = $block->getOrder() ?>
+<?php if($order->getShippingAddress()->getShippingHandling()): ?>
+<div class="admin__page-section-item order-shipping-method1">
+    <div class="admin__page-section-item-content">
+        <div class="admin__page-section-item-content">
+            <strong><?= __('EIN/SSN') ?></strong>
+            <span id="ein_sin">********</span>
+        </div>
+        <div class="admin__field admin__field-option">
+            <input type="checkbox" id="handling_filed_checkbox" name="handling_filed_checkbox"
+                   value="1" class="admin__control-checkbox">
+            <label class="admin__field-label" for="handling_filed_checkbox" class="label">
+                <span>Show EIN/SSN</span>
+            </label>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+<script>
+    require([
+        'jquery',
+    ],function($){
+        $('#handling_filed_checkbox').on('click', function () {
+            if($(this).is(":checked")) {
+                $('#ein_sin').text('<?=  $helperHandling->decryptHandling(
+                    $order->getShippingAddress()->getShippingHandling()
+                );  ?>');
+            }
+            else {
+                $('#ein_sin').text('********');
+            }
+        });
+    })
+</script>

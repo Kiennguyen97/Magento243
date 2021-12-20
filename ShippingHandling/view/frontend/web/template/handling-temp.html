@@ -1,0 +1,29 @@
+<!-- ko if: showForm -->
+<div class="fieldset shipping-handling-fieldset">
+    <div class="_required">
+        <label class="label shipping-handling" for="shipping_handling_filed">
+            <span>Employers Identification Number (EIN) or Social Security Number (SSN): <span style="color: #e02b27">*</span></span>
+        </label>
+        <input id="shipping_handling_filed"
+               data-bind="event: {change: setHandlingValue}, value: handlingValue, attr: {'data-hasrequired': $t('* Required Fields')}"
+               class="input-text" type="password"  aria-required="true" aria-invalid="false">
+    </div>
+    <!-- ko if: showError() -->
+    <div class="field-error" generated="true" id="error-QEAVGXK">
+        <span>This is a required field.</span>
+    </div>
+    <!--/ko-->
+    <div class="control">
+        <input type="checkbox" id="handling_filed_checkbox" data-bind="checked: wantsShowHandling" name="handling_filed_checkbox"
+               value="1" class="checkbox">
+        <label for="handling_filed_checkbox" class="label">
+            <span>Show EIN/SSN</span>
+        </label>
+    </div>
+</div>
+<div data-bind="html: window.checkoutConfig.handling.handlingCMSContent" style="margin-bottom: 20px"></div>
+<!-- /ko -->
+
+
+
+
