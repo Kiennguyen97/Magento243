@@ -17,13 +17,11 @@ define([
             if (shippingAddress.customAttributes != undefined) {
                 $.each(shippingAddress.customAttributes , function( key, value ) {
 
-                    if($.isPlainObject(value)){
-                        value = value['value'];
-                        key = this.attribute_code;
-                    }
+                    var attrCode = value['attribute_code'];
+                    var attrValue = value['value'];
 
-                    shippingAddress['customAttributes'][key] = value;
-                    shippingAddress['extension_attributes'][key] = value;
+                    shippingAddress['customAttributes'][attrCode] = value;
+                    shippingAddress['extension_attributes'][attrCode] = attrValue;
 
                 });
             }

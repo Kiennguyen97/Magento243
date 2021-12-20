@@ -17,12 +17,10 @@ define([
 
                 if (billingAddress.customAttributes != undefined) {
                     $.each(billingAddress.customAttributes, function (key, value) {
-                        if($.isPlainObject(value)){
-                            value = value['value'];
-                            key = this.attribute_code;
-                        }
+                        var attrCode = value['attribute_code'];
+                        var attrValue = value['value'];
 
-                        billingAddress['extension_attributes'][key] = value;
+                        billingAddress['extension_attributes'][attrCode] = attrValue;
                     });
                 }
 
