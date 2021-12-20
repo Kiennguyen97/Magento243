@@ -19,6 +19,7 @@
                                                                 <item name="company_detail" xsi:type="array">
                                                                     <item name="component" xsi:type="string">VBA_CompanyInvoiceDetails/js/view/company_detail</item>
                                                                     <item name="displayArea" xsi:type="string">company_detail</item>
+                                                                    <item name="sortOrder" xsi:type="string">0</item>
                                                                     <item name="config" xsi:type="array">
                                                                         <item name="template" xsi:type="string">VBA_CompanyInvoiceDetails/company_detail</item>
                                                                     </item>

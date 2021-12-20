@@ -1,6 +1,6 @@
 <!-- ko if: showForm -->
-<div class="fieldset company-invoice-detail-fieldset">
-    <div class="company-invoice-detail-tile">Company Invoice Detail</div>
+<div class="fieldset company-invoice-detail-fieldset" data-bind="visible: isAddressSameAsShipping()">
+    <div class="company-invoice-detail-tile" >Company Invoice Detail</div>
     <div class="">
         <label class="label company_legal_name" for="company">
             Company
