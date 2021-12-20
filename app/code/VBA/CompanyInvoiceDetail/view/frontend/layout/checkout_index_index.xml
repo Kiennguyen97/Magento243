@@ -20,7 +20,7 @@
                                                                     <item name="component" xsi:type="string">VBA_CompanyInvoiceDetail/js/view/company_detail</item>
                                                                     <item name="displayArea" xsi:type="string">company_detail</item>
                                                                     <item name="config" xsi:type="array">
-                                                                        <item name="template" xsi:type="string">VBA_CompanyInvoiceDetail/company-temp</item>
+                                                                        <item name="template" xsi:type="string">VBA_CompanyInvoiceDetail/company_detail</item>
                                                                     </item>
                                                                     <item name="children" xsi:type="array">
                                                                     </item>

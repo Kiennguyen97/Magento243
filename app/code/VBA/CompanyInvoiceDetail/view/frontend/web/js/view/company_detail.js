@@ -10,7 +10,7 @@ define([
         defaults: {
             template: 'VBA_CompanyInvoiceDetail/company_detail',
             showError: ko.observable(false),
-            showForm: 1
+            showForm: ko.observable(true)
         },
         initialize: function () {
             this._super();

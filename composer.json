@@ -23,7 +23,7 @@
     "require": {
         "laminas/laminas-dependency-plugin": "^2.2",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
-        "magento/composer-root-update-plugin": "~1.1",
+        "magento/composer-root-update-plugin": "^2.0",
         "magento/module-bundle-sample-data": "100.4.*",
         "magento/module-catalog-rule-sample-data": "100.4.*",
         "magento/module-catalog-sample-data": "100.4.*",
