@@ -31,11 +31,32 @@ define([
 
         recheckAddressSameAsShipping : function (e) {
             $(document).ready(function (){
-                var check = 0
+                var check = 0;
+                var checkedInput = '.payment-group .payment-method._active input[name="billing-address-same-as-shipping"]:checked'
+
+                var interval = setInterval(function (){
+                    if ($(document).find('input[name="billing-address-same-as-shipping"]').length > 0){
+                        var fieldSet = $('.fieldset.company-invoice-detail-fieldset');
+                        if ($(checkedInput).length > 0) {
+                            fieldSet.show();
+                        }else {
+                            fieldSet.hide();
+                        }
+                        clearInterval(interval);
+                    }
+                },1000);
+
+                $(document).on('click', '.payment-group .payment-method .payment-method-title', function () {
+                    var fieldSet = $('.fieldset.company-invoice-detail-fieldset');
+                    if ($(checkedInput).length > 0) {
+                        fieldSet.show();
+                    }else {
+                        fieldSet.hide();
+                    }
+                })
 
                 $(document).on('change', 'input[name="billing-address-same-as-shipping"]', function () {
                     var fieldSet = $('.fieldset.company-invoice-detail-fieldset');
-
                     if(this.checked) {
                         fieldSet.show();
                     }else {
@@ -45,33 +66,51 @@ define([
             });
         },
 
-        // setCompany: function (e) {
-        //     var self = this;
-        //     checkoutConfig.quoteData.extension_attributes.company = $('#company').val();
-        // },
+        setCompany: function (e) {
+            var self = this;
+            var value = $('#company').val();
+            $('input[name="company"]').val(value);
+            $('input[name="company"]').trigger('change');
+        },
+
         setCompanyLegalName: function (e) {
             var self = this;
-            checkoutConfig.quoteData.extension_attributes.company_legal_name = $('#company_legal_name').val();
+            var value = $('#company_legal_name').val();
+            $('input[name="custom_attributes[company_legal_name]"]').val(value);
+            $('input[name="custom_attributes[company_legal_name]"]').trigger('change');
+            checkoutConfig.quoteData.extension_attributes.company_legal_name = value;
         },
 
         setCompanyAddress: function (e) {
             var self = this;
-            checkoutConfig.quoteData.extension_attributes.company_address = $('#company_address').val();
+            var value = $('#company_address').val();
+            $('input[name="custom_attributes[company_address]"]').val(value);
+            $('input[name="custom_attributes[company_address]"]').trigger('change');
+            checkoutConfig.quoteData.extension_attributes.company_address = value;
         },
 
         setVatTax: function (e) {
             var self = this;
-            checkoutConfig.quoteData.extension_attributes.vat_tax = $('#vat_tax').val();
+            var value = $('#vat_tax').val();
+            $('input[name="custom_attributes[vat_tax]"]').val(value);
+            $('input[name="custom_attributes[vat_tax]"]').trigger('change');
+            checkoutConfig.quoteData.extension_attributes.vat_tax = value;
         },
 
         setCompanyRepresentative: function (e) {
             var self = this;
-            checkoutConfig.quoteData.extension_attributes.company_representative = $('#company_representative').val();
+            var value = $('#company_representative').val();
+            $('input[name="custom_attributes[company_representative]"]').val(value);
+            $('input[name="custom_attributes[company_representative]"]').trigger('change');
+            checkoutConfig.quoteData.extension_attributes.company_representative = value;
         },
 
         setCompanyEmail: function (e) {
             var self = this;
-            checkoutConfig.quoteData.extension_attributes.company_email = $('#company_email').val();
+            var value = $('#company_email').val();
+            $('input[name="custom_attributes[company_email]"]').val(value);
+            $('input[name="custom_attributes[company_email]"]').trigger('change');
+            checkoutConfig.quoteData.extension_attributes.company_email = value;
         },
     });
 });
