@@ -4,8 +4,9 @@ define([
     'uiComponent',
     'mage/url',
     'Magento_Checkout/js/model/quote',
-    'Magento_Checkout/js/view/billing-address'
-], function ($, ko, Component, urlBuilder, quote, billing) {
+    'Magento_Checkout/js/view/billing-address',
+    'Magento_Customer/js/model/address-list'
+], function ($, ko, Component, urlBuilder, quote, billing, addressList) {
     'use strict';
     return Component.extend({
         defaults: {
@@ -19,7 +20,6 @@ define([
                 isAddressSameAsShipping: true,
             });
 
-
             // this.company = ko.observable(checkoutConfig.quoteData.extension_attributes.company);
             this.companyLegalName = ko.observable(checkoutConfig.quoteData.extension_attributes.company_legal_name);
             this.companyAddress = ko.observable(checkoutConfig.quoteData.extension_attributes.company_address);
@@ -30,6 +30,10 @@ define([
         },
 
         recheckAddressSameAsShipping : function (e) {
+
+            var addressOptions = addressList().filter(function (address) {
+                    return address.getType() === 'customer-address';
+                });
             $(document).ready(function (){
                 var check = 0;
                 var checkedInput = '.payment-group .payment-method._active input[name="billing-address-same-as-shipping"]:checked'
@@ -39,8 +43,10 @@ define([
                         var fieldSet = $('.fieldset.company-invoice-detail-fieldset');
                         if ($(checkedInput).length > 0) {
                             fieldSet.show();
-                        }else {
+                        }else if(addressOptions.length < 2 && $('.action.action-edit-address').length < 1) {
                             fieldSet.hide();
+                        }else {
+                            fieldSet.show();
                         }
                         clearInterval(interval);
                     }
@@ -50,8 +56,10 @@ define([
                     var fieldSet = $('.fieldset.company-invoice-detail-fieldset');
                     if ($(checkedInput).length > 0) {
                         fieldSet.show();
-                    }else {
+                    }else if(addressOptions.length < 2 && $('.action.action-edit-address').length < 1) {
                         fieldSet.hide();
+                    }else {
+                        fieldSet.show();
                     }
                 })
 
@@ -59,8 +67,10 @@ define([
                     var fieldSet = $('.fieldset.company-invoice-detail-fieldset');
                     if(this.checked) {
                         fieldSet.show();
-                    }else {
+                    }else if(addressOptions.length < 2 && $('.action.action-edit-address').length < 1) {
                         fieldSet.hide();
+                    }else {
+                        fieldSet.show();
                     }
                 })
             });
