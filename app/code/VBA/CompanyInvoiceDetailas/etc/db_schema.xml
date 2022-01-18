@@ -1,22 +1,17 @@
 <?xml version="1.0" ?>
-<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="quote_address">
-        <column comment="Company Name" nullable="true" length="255" name="company_name" xsi:type="varchar"/>
         <column comment="Company Legal Name" nullable="true" length="255" name="company_legal_name" xsi:type="varchar"/>
         <column comment="Company Address" nullable="true" length="255" name="company_address" xsi:type="varchar"/>
         <column comment="Vat Tax" nullable="true" length="255" name="vat_tax" xsi:type="varchar"/>
-        <column comment="Company Representative" nullable="true" length="255" name="company_representative"
-                xsi:type="varchar"/>
+        <column comment="Company Representative" nullable="true" length="255" name="company_representative" xsi:type="varchar"/>
         <column comment="Company Email" nullable="true" length="255" name="company_email" xsi:type="varchar"/>
     </table>
-    <table name="sales_order_address">
-        <column comment="Company Name" nullable="true" length="255" name="company_name" xsi:type="varchar"/>
+	<table name="sales_order_address">
         <column comment="Company Legal Name" nullable="true" length="255" name="company_legal_name" xsi:type="varchar"/>
         <column comment="Company Address" nullable="true" length="255" name="company_address" xsi:type="varchar"/>
         <column comment="Vat Tax" nullable="true" length="255" name="vat_tax" xsi:type="varchar"/>
-        <column comment="Company Representative" nullable="true" length="255" name="company_representative"
-                xsi:type="varchar"/>
+        <column comment="Company Representative" nullable="true" length="255" name="company_representative" xsi:type="varchar"/>
         <column comment="Company Email" nullable="true" length="255" name="company_email" xsi:type="varchar"/>
-    </table>
+	</table>
 </schema>

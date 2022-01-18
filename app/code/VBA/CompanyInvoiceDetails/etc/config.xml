@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <customer>
+            <address_templates>
+                <html><![CDATA[{{depend prefix}}{{var prefix}} {{/depend}}{{var firstname}} {{depend middlename}}{{var middlename}} {{/depend}}{{var lastname}}{{depend suffix}} {{var suffix}}{{/depend}}{{depend firstname}}<br />{{/depend}}
+{{depend company}}{{var company}}<br />{{/depend}}
+{{if street1}}{{var street1}}<br />{{/if}}
+{{depend street2}}{{var street2}}<br />{{/depend}}
+{{depend street3}}{{var street3}}<br />{{/depend}}
+{{depend street4}}{{var street4}}<br />{{/depend}}
+{{if city}}{{var city}},  {{/if}}{{if region}}{{var region}}, {{/if}}{{if postcode}}{{var postcode}}{{/if}}<br />
+{{var country}}<br />
+{{depend telephone}}T: <a href="tel:{{var telephone}}">{{var telephone}}</a>{{/depend}}
+{{depend fax}}<br />F: {{var fax}}{{/depend}}
+{{depend vat_id}}<br />VAT: {{var vat_id}}{{/depend}}<br />
+{{if company_name}}Company Name: {{var company_name}}<br />{{/if}}
+{{if company_legal_name}}Company Legal Name: {{var company_legal_name}}<br />{{/if}}
+{{if company_address}}Company Address: {{var company_address}}<br />{{/if}}
+{{if vat_tax}}VAT / TAX ID: {{var vat_tax}}<br />{{/if}}
+{{if company_representative}}Company Representative: {{var company_representative}}<br />{{/if}}
+{{if company_email}}Company Email: {{var company_email}}<br />{{/if}}
+]]></html>
+            </address_templates>
+        </customer>
+    </default>
+</config>

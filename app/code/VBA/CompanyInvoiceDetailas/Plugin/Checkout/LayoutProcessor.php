@@ -44,15 +44,15 @@ class LayoutProcessor
         }
 
 //        if(isset($this->jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']['shippingAddress']['children']['shipping-address-fieldset'])
-//        ){
-//            $this->getShippingAddressGen('title','Title','280', $type = 'title');
-//            $this->getShippingAddressGen('company','Company','290');
+//       ){
+//          $this->getShippingAddressGen('title','Title','280', $type = 'title');
+//          $this->getShippingAddressGen('company','Company','290');
 //            $this->getShippingAddressGen('company_legal_name','Company Legal Name','300');
-//            $this->getShippingAddressGen('company_address','Company Address','310');
-//            $this->getShippingAddressGen('vat_tax', 'VAT/TAX ID','320');
-//            $this->getShippingAddressGen('company_representative', 'Company Representative','330');
-//            $this->getShippingAddressGen('company_email', 'Company Email','340');
-//        }
+//           $this->getShippingAddressGen('company_address','Company Address','310');
+//          $this->getShippingAddressGen('vat_tax', 'VAT/TAX ID','320');
+//           $this->getShippingAddressGen('company_representative', 'Company Representative','330');
+//          $this->getShippingAddressGen('company_email', 'Company Email','340');
+//       }
 
         return $this->jsLayout;
     }

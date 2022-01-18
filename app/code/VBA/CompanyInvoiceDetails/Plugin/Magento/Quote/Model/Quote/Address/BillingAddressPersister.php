@@ -1,8 +1,8 @@
 <?php
 
-namespace VBA\CompanyInvoiceDetails\Plugin\Magento\Quote\Model;
+namespace VBA\CompanyInvoiceDetails\Plugin\Magento\Quote\Model\Quote\Address;
 
-class BillingAddressManagement
+class BillingAddressPersister
 {
     protected $logger;
 
@@ -13,11 +13,11 @@ class BillingAddressManagement
         $this->logger = $logger;
     }
 
-    public function beforeAssign(
-        \Magento\Quote\Model\BillingAddressManagement $subject,
-                                                      $cartId,
-        \Magento\Quote\Api\Data\AddressInterface      $address,
-                                                      $useForShipping = false
+    public function beforeSave(
+        \Magento\Quote\Model\Quote\Address\BillingAddressPersister $subject,
+                                                                   $quote,
+        \Magento\Quote\Api\Data\AddressInterface                   $address,
+                                                                   $useForShipping = false
     )
     {
 

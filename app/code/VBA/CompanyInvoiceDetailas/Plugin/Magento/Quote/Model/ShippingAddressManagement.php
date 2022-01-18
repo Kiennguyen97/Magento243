@@ -2,29 +2,25 @@
 
 namespace VBA\CompanyInvoiceDetails\Plugin\Magento\Quote\Model;
 
-class BillingAddressManagement
+class ShippingAddressManagement
 {
     protected $logger;
 
     public function __construct(
         \Psr\Log\LoggerInterface $logger
-    )
-    {
+    ) {
         $this->logger = $logger;
     }
 
     public function beforeAssign(
-        \Magento\Quote\Model\BillingAddressManagement $subject,
-                                                      $cartId,
-        \Magento\Quote\Api\Data\AddressInterface      $address,
-                                                      $useForShipping = false
-    )
-    {
+        \Magento\Quote\Model\ShippingAddressManagement $subject,
+                                                       $cartId,
+        \Magento\Quote\Api\Data\AddressInterface $address
+    ) {
 
         $extAttributes = $address->getExtensionAttributes();
         if (!empty($extAttributes)) {
             try {
-                $address->setCompanyName($extAttributes->getCompanyName());
                 $address->setCompanyLegalName($extAttributes->getCompanyLegalName());
                 $address->setCompanyAddress($extAttributes->getCompanyAddress());
                 $address->setVatTax($extAttributes->getVatTax());
